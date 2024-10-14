@@ -1,6 +1,6 @@
 :root {
     --description-font-size: 12px;
-    --main-max-height: 800px;
+    --main-max-height: 1000px;
 }
 
 main {
@@ -12,7 +12,7 @@ main {
     align-items: center;
 
     width: 100%;
-    max-width: 800px;
+    max-width: 1000px;
 
     padding: 12px;
 }
@@ -38,6 +38,6 @@ main {
 
 @media screen and (min-width: 1200px) {
     main {
-        max-height: calc(var(--villager-card-max-height) * 4);
+        max-height: var(--main-max-height);
     }
 }
