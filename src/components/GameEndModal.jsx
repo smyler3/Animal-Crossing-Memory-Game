@@ -8,7 +8,7 @@ const GameEndModal = ({ score, best }) => {
             <div className="modal">
                 <div className="modal-header">
                     <div className="modal-header-background">
-                        <p className="modal-result-message">{score === 12 ? "YOU WIN" : "GAME OVER"}</p>
+                        <p>{score === 12 ? "YOU WIN" : "GAME OVER"}</p>
                     </div>
                 </div>
                 <div className="modal-content">
