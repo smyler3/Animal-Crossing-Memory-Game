@@ -1,5 +1,5 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Fredoka', 'Arial Rounded MT Bold', 'Trebuchet MS', 'Verdana', 'Helvetica', sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -38,6 +38,11 @@
 
   /* Main Styling Colours */
   --main-bg-colour: var(--tan-100);
+
+  /* Header Styling Colours */
+  --header-bg-colour: var(--pink-200);
+  --header-border-colour: var(--pink-100);
+  --header-text-colour: var(--brown-300);
 
   /* Footer Styling Colours */
   --footer-border-colour: var(--pink-100);

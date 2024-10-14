@@ -1,7 +1,11 @@
+:root {
+    --footer-font-size: 12px; 
+}
+
 footer {
     width: 100%;
 
-    padding-top: 10px;
+    padding-top: 8px;
 
     background-color: var(--footer-border-colour);
     box-shadow: var(--shadow);
@@ -15,14 +19,14 @@ footer {
 
     width: 100%;
 
-    padding: 10px;
+    padding: 4px 8px 8px;
 
     background-color: var(--footer-bg-colour);
     box-shadow: var(--shadow);
 }
 
 .footer-text {
-    font-size: 16px;
+    font-size: var(--footer-font-size);
     color: var(--footer-text-colour);
 }
 
@@ -40,4 +44,11 @@ footer {
 
 .footer-image-container > a > svg {
     fill: var(--footer-icon-colour);
+}
+
+/* Desktop Styling */
+@media screen and (min-width: 601px) {
+    :root {
+        --footer-font-size: 14px; /* Larger font for readability */
+    }
 }

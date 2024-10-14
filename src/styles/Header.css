@@ -1,0 +1,47 @@
+:root {
+    --header-font-size: 20px;
+}
+
+header {
+    width: 100%;
+
+    padding-bottom: 12px;
+
+    color: var(--header-text-colour);
+    background-color: var(--header-border-colour);
+    box-shadow: var(--shadow);
+}
+
+.header-background-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--header-bg-colour);
+    box-shadow: var(--shadow);
+}
+
+.header-content-wrapper {
+    padding: 8px 8px 4px;
+}
+
+.primary-title,
+.secondary-title {
+    font-size: var(--header-font-size);
+}
+
+.primary-title {
+    font-weight: 800;
+}
+
+.secondary-title {
+    font-family: 'Itim', 'Comic Sans MS', 'Brush Script MT', 'Segoe Script', 'Apple Chancery', cursive;
+    font-weight: 600;
+}
+
+/* Desktop Styling */
+@media screen and (min-width: 601px) {
+    :root {
+        --header-font-size: 30px; /* Larger font for readability */
+    }
+}
