@@ -1,0 +1,23 @@
+.play-again-button {
+    padding: 12px 24px;
+
+    color: var(--play-again-button-colour);
+    text-align: center;
+    font-weight: 500;
+    font-size: 20px;
+
+    border-radius: 25px;
+    background-color: var(--play-again-button-bg-colour);
+    box-shadow: var(--shadow);
+}
+
+.play-again-button:hover {
+    background-color: var(--play-again-button-hover-bg-colour);
+}
+.play-again-button:active {
+    background-color: var(--play-again-button-active-bg-colour);
+}
+
+.play-again-button:focus {
+    outline: 2px solid var(--play-again-button-focus-outline-colour);
+}
