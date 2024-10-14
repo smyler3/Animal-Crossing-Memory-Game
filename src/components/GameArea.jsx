@@ -1,5 +1,6 @@
 import "../styles/GameArea.css";
 import CardGrid from "./CardGrid";
+import GameEndModal from "./GameEndModal";
 import Scoreboard from "./Scoreboard";
 
 const mockVillagers = [
@@ -124,6 +125,7 @@ const GameArea = () => {
             </p>
             <Scoreboard score={0} best={10} />
             <CardGrid villagers={mockVillagers}/>
+            <GameEndModal score={6} best={10} />
         </main>
     )
 };

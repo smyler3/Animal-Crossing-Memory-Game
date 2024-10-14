@@ -34,7 +34,7 @@
 
   --white: #FFFFFF;
 
-  --shadow: 0 0 2px #00000025;
+  --shadow: 0 0 4px #00000030;
 
   /* Main Styling Colours */
   --main-bg-colour: var(--tan-100);
@@ -62,6 +62,21 @@
   --footer-bg-colour: var(--pink-200);
   --footer-text-colour: var(--brown-300);
   --footer-icon-colour: var(--brown-300);
+
+  /* Modal Styling Colours */
+  --modal-bg-colour: var(--tan-100);
+  --modal-header-border-colour: var(--pink-100);
+  --modal-header-bg-colour: var(--pink-200);
+  --modal-header-colour: var(--brown-300);
+  --modal-footer-border-colour: var(--pink-100);
+  --modal-footer-bg-colour: var(--pink-200);
+
+  /* Button Styling Colours */
+  --play-again-button-bg-colour: var(--green-100);
+  --play-again-button-hover-bg-colour: var(--green-200);
+  --play-again-button-focus-outline-colour: var(--brown-300);
+  --play-again-button-active-bg-colour: var(--green-300);
+  --play-again-button-colour: var(--white);
 }
 
 * {

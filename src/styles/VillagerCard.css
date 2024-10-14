@@ -7,6 +7,7 @@
 .villager-card {
     border-radius: var(--villager-card-border-radius);
     overflow: hidden;
+    box-shadow: var(--shadow);
 }
 
 .villager-card:hover,
