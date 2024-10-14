@@ -1,0 +1,43 @@
+footer {
+    width: 100%;
+
+    padding-top: 10px;
+
+    background-color: var(--footer-border-colour);
+    box-shadow: var(--shadow);
+}
+
+.footer-content-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    width: 100%;
+
+    padding: 10px;
+
+    background-color: var(--footer-bg-colour);
+    box-shadow: var(--shadow);
+}
+
+.footer-text {
+    font-size: 16px;
+    color: var(--footer-text-colour);
+}
+
+.footer-image-container > a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-image-container > a,
+.footer-image-container > a > svg {
+    height: 20px;
+    width: 20px;
+}
+
+.footer-image-container > a > svg {
+    fill: var(--footer-icon-colour);
+}
