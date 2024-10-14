@@ -1,6 +1,8 @@
 :root {
     --scoreboard-border-rounding: 10px;
     --scoreboard-padding: 8px;
+    --scoreboard-font-size: 16px;
+    --scoreboard-value-font-size: 34px;
 }
 
 .scoreboard {
@@ -10,39 +12,43 @@
     background-color: var(--scoreboard-bg-colour);
     border: 3px solid var(--scoreboard-border-colour);
     border-radius: var(--scoreboard-border-rounding);
+    box-shadow: var(--shadow);
 }
 
-.score-section {
+.primary-score,
+.secondary-score {
+    font-size: var(--scoreboard-font-size);
+    font-weight: 700;
+}
+
+.primary-score {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 
     padding: var(--scoreboard-padding);
-
-    color: var(--score-section-colour);
-    background-color: var(--score-section-bg-colour);
 }
-
-.scoreboard-title,
-.best-score-section {
-    font-size: 16px;
+.primary-score > .scoreboard-value {
+    font-size: var(--scoreboard-value-font-size);
     font-weight: 700;
 }
 
-.scoreboard-value {
-    font-size: 34px;
-    font-weight: 700;
-}
-
-.best-score-section {
+.secondary-score {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 4px;
 
     padding: var(--scoreboard-padding);
+}
 
+.score-section {
+    color: var(--score-section-colour);
+    background-color: var(--score-section-bg-colour);
+}
+
+.best-score-section {
     color: var(--best-score-section-colour);
 }
 
@@ -50,6 +56,8 @@
 @media screen and (min-width: 601px) {
     :root {
         --scoreboard-padding: 12px;
+        --scoreboard-font-size: 20px;
+    --scoreboard-value-font-size: 40px;
     }
 
     .scoreboard {
