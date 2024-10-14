@@ -4,12 +4,25 @@
     --villager-card-font-size: 12px;
 }
 
+.villager-card {
+    border-radius: var(--villager-card-border-radius);
+    overflow: hidden;
+}
+
+.villager-card:hover,
+.villager-card:focus {
+    outline: 2px solid var(--villager-card-hover-outline);
+}
+
+.villager-card:active {
+    outline: 2px solid var(--villager-card-active-outline);
+}
+
 .villager-img {
     width: 100%;
     aspect-ratio: 1 / 1;
 
     background-color: var(--villager-card-bg-colour);
-    border-radius: var(--villager-card-border-radius) var(--villager-card-border-radius) 0 0;
 }
 
 .villager-title-card {
@@ -18,7 +31,6 @@
     padding: 8px;
 
     font-size: var(--villager-card-font-size);
-    border-radius: 0 0 var(--villager-card-border-radius) var(--villager-card-border-radius);
 }
 
 /* Desktop Styling */
