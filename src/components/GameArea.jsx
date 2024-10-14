@@ -116,17 +116,19 @@ const mockVillagers = [
 
 const GameArea = () => {
     return (
-        <main>
-            <p className="game-description">
-                Click each Animal Crossing villager card in the grid without selecting the same card more than once.
-                <br />
-                <br />
-                Be careful though, as the cards will shuffle after every click to challenge your memory.
-            </p>
-            <Scoreboard score={0} best={10} />
-            <CardGrid villagers={mockVillagers}/>
+        <>
             <GameEndModal score={6} best={10} />
-        </main>
+            <main>
+                <p className="game-description">
+                    Click each Animal Crossing villager card in the grid without selecting the same card more than once.
+                    <br />
+                    <br />
+                    Be careful though, as the cards will shuffle after every click to challenge your memory.
+                </p>
+                <Scoreboard score={0} best={10} />
+                <CardGrid villagers={mockVillagers}/>
+            </main>
+        </>
     )
 };
 
