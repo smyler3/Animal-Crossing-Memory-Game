@@ -61,4 +61,8 @@
     :root {
         --scoreboard-padding: 12px;
     }
+
+    .scoreboard {
+        justify-self: center;
+    }
 }

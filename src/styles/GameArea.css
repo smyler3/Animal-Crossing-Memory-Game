@@ -1,5 +1,6 @@
 :root {
     --description-font-size: 12px;
+    --main-max-height: 800px;
 }
 
 main {
@@ -10,6 +11,7 @@ main {
     row-gap: 12px;
     align-items: center;
 
+    width: 100%;
     max-width: 800px;
 
     padding: 12px;
@@ -23,6 +25,19 @@ main {
 /* Desktop Styling */
 @media screen and (min-width: 601px) {
     :root {
-        --description-font-size: 15px; /* Larger font for readability */
+        --description-font-size: 18px; /* Larger font for readability */
+    }
+
+    main {
+        grid-template-columns: 1fr 150px;
+        grid-template-rows: auto auto 1fr;
+
+        padding: 40px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    main {
+        max-height: calc(var(--villager-card-max-height) * 4);
     }
 }
