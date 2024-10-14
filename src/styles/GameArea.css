@@ -30,9 +30,13 @@ main {
 
     main {
         grid-template-columns: 1fr 150px;
-        grid-template-rows: auto auto 1fr;
+        grid-template-rows: auto 1fr;
 
         padding: 40px;
+    }
+
+    .scoreboard {
+        align-self: flex-start;
     }
 }
 

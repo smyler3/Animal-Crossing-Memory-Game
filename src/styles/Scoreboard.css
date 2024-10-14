@@ -5,10 +5,11 @@
     --scoreboard-padding: 8px;
     --scoreboard-font-size: 16px;
     --scoreboard-value-font-size: 34px;
+    --scoreboard-width: 100px;
 }
 
 .scoreboard {
-    width: 100px;
+    width: var(--scoreboard-width);
 
     overflow: hidden;
     background-color: var(--scoreboard-bg-colour);
@@ -59,7 +60,8 @@
     :root {
         --scoreboard-padding: 12px;
         --scoreboard-font-size: 20px;
-    --scoreboard-value-font-size: 40px;
+        --scoreboard-value-font-size: 40px;
+        --scoreboard-width: 100%;
     }
 
     .scoreboard {
