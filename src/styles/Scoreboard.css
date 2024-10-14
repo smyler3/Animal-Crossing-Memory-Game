@@ -1,0 +1,53 @@
+#root {
+    --scoreboard-border-rounding: 4px;
+}
+
+.scoreboard {
+    width: 100px;
+}
+
+/* Create border wrapping both sections together */
+.score-section, 
+.best-score-section {
+    padding: 8px;
+    border: 2px solid var(--scoreboard-border-colour);
+}
+.score-section {
+    border-bottom: none;
+    border-radius: var(--scoreboard-border-rounding) var(--scoreboard-border-rounding) 0 0;
+}
+.best-score-section {
+    border-top: none;
+    border-radius: 0 0 var(--scoreboard-border-rounding) var(--scoreboard-border-rounding);
+}
+
+.score-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--score-section-colour);
+    background-color: var(--score-section-bg-colour);
+}
+
+.scoreboard-title,
+.best-score-section {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.scoreboard-value {
+    font-size: 34px;
+    font-weight: 700;
+}
+
+.best-score-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+
+    color: var(--best-score-section-colour);
+    background-color: var(--best-score-section-bg-colour);
+}
