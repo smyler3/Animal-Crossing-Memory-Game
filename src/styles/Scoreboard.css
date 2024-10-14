@@ -1,5 +1,6 @@
-#root {
-    --scoreboard-border-rounding: 4px;
+:root {
+    --scoreboard-border-rounding: 8px;
+    --scoreboard-padding: 4px;
 }
 
 .scoreboard {
@@ -9,7 +10,6 @@
 /* Create border wrapping both sections together */
 .score-section, 
 .best-score-section {
-    padding: 8px;
     border: 2px solid var(--scoreboard-border-colour);
 }
 .score-section {
@@ -26,6 +26,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    padding: var(--scoreboard-padding);
 
     color: var(--score-section-colour);
     background-color: var(--score-section-bg-colour);
@@ -48,6 +50,15 @@
     justify-content: center;
     gap: 4px;
 
+    padding: var(--scoreboard-padding);
+
     color: var(--best-score-section-colour);
     background-color: var(--best-score-section-bg-colour);
+}
+
+/* Desktop Styling */
+@media screen and (min-width: 601px) {
+    :root {
+        --scoreboard-padding: 12px;
+    }
 }
