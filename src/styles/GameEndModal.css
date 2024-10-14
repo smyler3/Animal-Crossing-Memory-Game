@@ -1,3 +1,5 @@
+/* Add Transition on appearance e.g. opacity */
+
 :root {
     --modal-padding-size: 20px;
 }
@@ -34,15 +36,14 @@
 
 .modal-header-background {
     padding: 4px;
-    background-color: var(--modal-header-bg-colour);
-    box-shadow: var(--shadow);
-}
 
-.modal-result-message {
     text-align: center;
     font-size: 30px;
     font-weight: 700;
     color: var(--modal-header-colour);
+
+    background-color: var(--modal-header-bg-colour);
+    box-shadow: var(--shadow);
 }
 
 /* Modal Content Styling */

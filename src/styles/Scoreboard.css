@@ -1,3 +1,5 @@
+/* Add Transition on score change e.g. squish old and stretch new */
+
 :root {
     --scoreboard-border-rounding: 10px;
     --scoreboard-padding: 8px;
