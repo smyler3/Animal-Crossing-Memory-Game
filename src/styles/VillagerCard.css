@@ -1,0 +1,29 @@
+:root {
+    --villager-card-border-radius: 10px;
+    --villager-card-max-height: 175px;
+    --villager-card-font-size: 12px;
+}
+
+.villager-img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+
+    background-color: var(--villager-card-bg-colour);
+    border-radius: var(--villager-card-border-radius) var(--villager-card-border-radius) 0 0;
+}
+
+.villager-title-card {
+    text-align: center;
+
+    padding: 8px;
+
+    font-size: var(--villager-card-font-size);
+    border-radius: 0 0 var(--villager-card-border-radius) var(--villager-card-border-radius);
+}
+
+/* Desktop Styling */
+@media screen and (min-width: 601px) {
+    :root {
+        --villager-card-font-size: 20px;
+    }
+}

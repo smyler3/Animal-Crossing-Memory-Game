@@ -52,6 +52,9 @@
   --best-score-section-colour: var(--white);
   --best-score-section-bg-colour: var(--pink-200);
 
+  /* Villager Card Styling Colours */
+  --villager-card-bg-colour: var(--white);
+
   /* Footer Styling Colours */
   --footer-border-colour: var(--pink-100);
   --footer-bg-colour: var(--pink-200);
