@@ -2,7 +2,7 @@ import "../styles/GameEndModal.css";
 import Button from "./Button";
 import Scoreboard from "./Scoreboard";
 
-const GameEndModal = ({ score, best, onClick }) => {
+const GameEndModal = ({ score, best, handleClick }) => {
     return (
         <div className="modal-wrapper">
             <div className="modal">
@@ -16,7 +16,7 @@ const GameEndModal = ({ score, best, onClick }) => {
                         <Scoreboard score={score} />
                         <Scoreboard best={best} />
                     </div>
-                    <Button onClick={onClick} />
+                    <Button onClick={handleClick} />
                 </div>
                 <div className="modal-footer">
                     <div className="modal-footer-background"></div>

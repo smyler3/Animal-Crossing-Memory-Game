@@ -1,11 +1,9 @@
-import { useState } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../styles/GameArea.css";
 import CardGrid from "./CardGrid";
 import GameEndModal from "./GameEndModal";
 import Scoreboard from "./Scoreboard";
 import VillagerCard from "./VillagerCard";
-import { useEffect } from "react";
 
 const mockVillagers = [
     {
@@ -16,6 +14,7 @@ const mockVillagers = [
         },
         title_color: "#FFD700", // Gold
         text_color: "#000000", // Black
+        clicked: false,
     },
     {
         id: 2,
@@ -25,6 +24,7 @@ const mockVillagers = [
         },
         title_color: "#C0C0C0", // Silver
         text_color: "#000000", // Black
+        clicked: false,
     },
     {
         id: 3,
@@ -34,6 +34,7 @@ const mockVillagers = [
         },
         title_color: "#ADD8E6", // Light Blue
         text_color: "#FFFFFF", // White
+        clicked: false,
     },
     {
         id: 4,
@@ -43,6 +44,7 @@ const mockVillagers = [
         },
         title_color: "#FF4500", // Orange Red
         text_color: "#FFFFFF", // White
+        clicked: false,
     },
     {
         id: 5,
@@ -52,6 +54,7 @@ const mockVillagers = [
         },
         title_color: "#D2B48C", // Tan
         text_color: "#000000", // Black
+        clicked: false,
     },
     {
         id: 6,
@@ -61,6 +64,7 @@ const mockVillagers = [
         },
         title_color: "#FF6347", // Tomato
         text_color: "#FFFFFF", // White
+        clicked: false,
     },
     {
         id: 7,
@@ -70,6 +74,7 @@ const mockVillagers = [
         },
         title_color: "#EE82EE", // Violet
         text_color: "#000000", // Black
+        clicked: false,
     },
     {
         id: 8,
@@ -79,6 +84,7 @@ const mockVillagers = [
         },
         title_color: "#FFD700", // Gold
         text_color: "#000000", // Black
+        clicked: false,
     },
     {
         id: 9,
@@ -88,6 +94,7 @@ const mockVillagers = [
         },
         title_color: "#DC143C", // Crimson
         text_color: "#FFFFFF", // White
+        clicked: false,
     },
     {
         id: 10,
@@ -97,6 +104,7 @@ const mockVillagers = [
         },
         title_color: "#DEB887", // Burly Wood
         text_color: "#000000", // Black
+        clicked: false,
     },
     {
         id: 11,
@@ -106,6 +114,7 @@ const mockVillagers = [
         },
         title_color: "#A9A9A9", // Dark Gray
         text_color: "#FFFFFF", // White
+        clicked: false,
     },
     {
         id: 12,
@@ -115,6 +124,7 @@ const mockVillagers = [
         },
         title_color: "#FFB6C1", // Light Pink
         text_color: "#000000", // Black
+        clicked: false,
     }
 ];
 
@@ -133,7 +143,7 @@ const villagerNames = [
     'Yuka',
 ];
 
-// Use a given list of villager names to fetch data from Nookipedia and return an array of promsies that resolve with their data
+// Use a given list of villager names to fetch data from Nookipedia and return an array of promises that resolve with their data
 const getData = async (names) => {
     try {
         const villagersData = await Promise.all(names.map(async (name) => {
@@ -147,7 +157,8 @@ const getData = async (names) => {
                 title_colour: data[0].title_color,
                 text_colour: data[0].text_colour,
                 icon_url: data[0].nh_details.icon_url,
-                image_url: data[0].nh_details.image_url,    
+                image_url: data[0].nh_details.image_url,
+                clicked: false,    
             }
         }));
 
@@ -171,56 +182,61 @@ const shuffle = (originalArray) => {
 };
 
 const GameArea = () => {
-    const [villagers, setVillagers] = useState(mockVillagers);
-
-    // Collect villager data on loading
-    useEffect(() => {
-        const fetchVillagerData = async () => {
-            const villagerData = await getData(villagerNames);
-            setVillagers(villagerData);
-        };
-
-        fetchVillagerData();
-    }, [setVillagers]);
-    
-    const handleCardClick = (e) => {
-        setVillagers(shuffle(villagers));
-    };
-
-    // TODO: Remove
-    // console.log(villagers);
-
     const [score, setScore] = useState(0);
     const [best, setBest] = useState(0);
     const [showModal, setShowModal] = useState(false);
     const [villagers, setVillagers] = useState(mockVillagers);
 
-    const handleCardClick = () => {
-        // // card unChecked
-        // if () {
-        //      // Make Card checked
-        //      const newScore = score + 1;
-        //      setScore(newScore);
-        //      if (newScore === villagers.length) {
-        //          setBest(newScore);
-        //          setShowModal(true);
-        //      }
-        // }
-        // // card checked
-        // else {
-        //     setBest(prev => max(prev, score));
-        //     setShowModal(true);
-        // }
+    // // Collect villager data on loading
+    // useEffect(() => {
+    //     const fetchVillagerData = async () => {
+    //         const villagerData = await getData(villagerNames);
+    //         setVillagers(villagerData);
+    //     };
+
+    //     fetchVillagerData();
+    // }, []);
+
+    const handleCardClick = (id) => {
+        const villager = villagers.find(v => v.id === id);
+
+        // Card not previously clicked
+        if (!villager.clicked) {
+            // Add to score
+             const newScore = score + 1;
+             setScore(newScore);
+
+            //  Game won
+             if (newScore === villagers.length) {
+                 setBest(newScore);
+                 setShowModal(true);
+             }
+            // Game continues
+             else {
+                // Make card clicked and shuffle
+                const newVillagers = [...villagers.filter(v => v.id !== id), {...villager, clicked: true}];
+                setVillagers(shuffle(newVillagers));
+             }
+        }
+        // Card previously clicked
+        else {
+            setBest(prev => Math.max(prev, score));
+            setShowModal(true);
+        }
     };
 
     const handlePlayAgainClick = () => {
         setScore(0);
         setShowModal(false);
+
+        // Make all cards unclicked and shuffle
+        const newVillagers = villagers.map(v => { return {...v, clicked: false } });
+        setVillagers(shuffle(newVillagers));
     };
 
     return (
         <>
-            {showModal && <GameEndModal score={score} best={best} onClick={handlePlayAgainClick} />}
+            {showModal && <GameEndModal score={score} best={best} handleClick={handlePlayAgainClick} />}
             <main>
                 <p className="game-description">
                     Click each Animal Crossing villager card in the grid without selecting the same card more than once.
@@ -230,7 +246,7 @@ const GameArea = () => {
                 </p>
                 <Scoreboard score={score} best={best} />
                 <CardGrid >
-                    {villagers.map(villager => <VillagerCard key={villager.id} villager={villager} onClick={handleCardClick} />)}
+                    {villagers.map(villager => <VillagerCard key={villager.id} villager={villager} handleClick={handleCardClick} />)}
                 </CardGrid>
             </main>
         </>
