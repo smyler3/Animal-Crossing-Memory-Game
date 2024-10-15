@@ -24,6 +24,11 @@
     background-color: var(--villager-card-bg-colour);
 }
 
+.villager-img > img {
+    width: 100%;
+    height: 100%;
+}
+
 .villager-title-card {
     text-align: center;
 

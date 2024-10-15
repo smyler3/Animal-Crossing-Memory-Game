@@ -147,20 +147,25 @@ const villagerNames = [
 const getData = async (names) => {
     try {
         const villagersData = await Promise.all(names.map(async (name) => {
-            const res = await fetch(`https://api.nookipedia.com/villagers/${name}?api_key=${REACT_APP_API_KEY}`, {mode: 'cors'});
+            const res = await fetch(
+                `https://api.nookipedia.com/villagers?name=${name}&nhdetails=true&thumbsize=200&api_key=${env.API_KEY}&version=1.0.0`, 
+                {mode: 'cors'}
+            );
             const data = await res.json();
             // TODO: remove
-            console.log(data);
+            console.log("data", data);
             return {
                 id: data[0].id,
                 name: data[0].name,
                 title_colour: data[0].title_color,
-                text_colour: data[0].text_colour,
+                text_colour: data[0].text_color,
                 icon_url: data[0].nh_details.icon_url,
-                image_url: data[0].nh_details.image_url,
+                // image_url: data[0].nh_details.image_url,
                 clicked: false,    
             }
         }));
+
+        console.log("retrieved data", villagersData);
 
         return villagersData;
     } catch (err) {
@@ -187,15 +192,15 @@ const GameArea = () => {
     const [showModal, setShowModal] = useState(false);
     const [villagers, setVillagers] = useState(mockVillagers);
 
-    // // Collect villager data on loading
-    // useEffect(() => {
-    //     const fetchVillagerData = async () => {
-    //         const villagerData = await getData(villagerNames);
-    //         setVillagers(villagerData);
-    //     };
+    // Collect villager data on loading
+    useEffect(() => {
+        const fetchVillagerData = async () => {
+            const villagerData = await getData(villagerNames);
+            setVillagers(villagerData);
+        };
 
-    //     fetchVillagerData();
-    // }, []);
+        fetchVillagerData();
+    }, []);
 
     const handleCardClick = (id) => {
         const villager = villagers.find(v => v.id === id);
