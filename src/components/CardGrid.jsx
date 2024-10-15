@@ -1,10 +1,9 @@
 import "../styles/CardGrid.css";
-import VillagerCard from "./VillagerCard";
 
-const CardGrid = ({ villagers }) => {
+const CardGrid = ({ children }) => {
     return (
         <div className="card-grid">
-            {villagers.map(villager => <VillagerCard key={villager.id} villager={villager} />)}
+            {children}
         </div>
     )
 };

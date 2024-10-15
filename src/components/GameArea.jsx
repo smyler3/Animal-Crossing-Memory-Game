@@ -1,7 +1,9 @@
+import { useState } from "react";
 import "../styles/GameArea.css";
 import CardGrid from "./CardGrid";
 import GameEndModal from "./GameEndModal";
 import Scoreboard from "./Scoreboard";
+import VillagerCard from "./VillagerCard";
 
 const mockVillagers = [
     {
@@ -114,10 +116,42 @@ const mockVillagers = [
     }
 ];
 
+// TODO: Add Promises for talking to API
+
+// TODO: Add shuffle cards function
+
 const GameArea = () => {
+    const [score, setScore] = useState(0);
+    const [best, setBest] = useState(0);
+    const [showModal, setShowModal] = useState(false);
+    const [villagers, setVillagers] = useState(mockVillagers);
+
+    const handleCardClick = () => {
+        // // card unChecked
+        // if () {
+        //      // Make Card checked
+        //      const newScore = score + 1;
+        //      setScore(newScore);
+        //      if (newScore === villagers.length) {
+        //          setBest(newScore);
+        //          setShowModal(true);
+        //      }
+        // }
+        // // card checked
+        // else {
+        //     setBest(prev => max(prev, score));
+        //     setShowModal(true);
+        // }
+    };
+
+    const handlePlayAgainClick = () => {
+        setScore(0);
+        setShowModal(false);
+    };
+
     return (
         <>
-            <GameEndModal score={6} best={10} />
+            {showModal && <GameEndModal score={score} best={best} onClick={handlePlayAgainClick} />}
             <main>
                 <p className="game-description">
                     Click each Animal Crossing villager card in the grid without selecting the same card more than once.
@@ -125,8 +159,10 @@ const GameArea = () => {
                     <br />
                     Be careful though, as the cards will shuffle after every click to challenge your memory.
                 </p>
-                <Scoreboard score={0} best={10} />
-                <CardGrid villagers={mockVillagers}/>
+                <Scoreboard score={score} best={best} />
+                <CardGrid >
+                    {villagers.map(villager => <VillagerCard key={villager.id} villager={villager} onClick={handleCardClick} />)}
+                </CardGrid>
             </main>
         </>
     )
