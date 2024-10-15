@@ -8,13 +8,11 @@
     border-radius: var(--villager-card-border-radius);
     overflow: hidden;
     box-shadow: var(--shadow);
+    cursor: pointer;
 }
-
-.villager-card:hover,
-.villager-card:focus {
+.villager-card:hover {
     outline: 2px solid var(--villager-card-hover-outline);
 }
-
 .villager-card:active {
     outline: 2px solid var(--villager-card-active-outline);
 }
