@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useState } from "react";
 import "../styles/GameArea.css";
 import CardGrid from "./CardGrid";
 import GameEndModal from "./GameEndModal";
 import Scoreboard from "./Scoreboard";
 import VillagerCard from "./VillagerCard";
+import { useEffect } from "react";
 
 const mockVillagers = [
     {
@@ -116,11 +118,78 @@ const mockVillagers = [
     }
 ];
 
-// TODO: Add Promises for talking to API
+const villagerNames = [
+    'Diva',
+    'Lopez',
+    'Lucky',
+    'Octavian',
+    'Raddle',
+    'Raymond',
+    'Roswell',
+    'Ruby',
+    'Scoot',
+    'Stitches',
+    'Sylvana',
+    'Yuka',
+];
 
-// TODO: Add shuffle cards function
+// Use a given list of villager names to fetch data from Nookipedia and return an array of promsies that resolve with their data
+const getData = async (names) => {
+    try {
+        const villagersData = await Promise.all(names.map(async (name) => {
+            const res = await fetch(`https://api.nookipedia.com/villagers/${name}?api_key=${REACT_APP_API_KEY}`, {mode: 'cors'});
+            const data = await res.json();
+            // TODO: remove
+            console.log(data);
+            return {
+                id: data[0].id,
+                name: data[0].name,
+                title_colour: data[0].title_color,
+                text_colour: data[0].text_colour,
+                icon_url: data[0].nh_details.icon_url,
+                image_url: data[0].nh_details.image_url,    
+            }
+        }));
+
+        return villagersData;
+    } catch (err) {
+        console.error(err);
+        return [];
+    }
+};
+
+// Durstfield Shuffle implementation (https://gist.github.com/webbower/8d19b714ded3ec53d1d7ed32b79fdbac)
+const shuffle = (originalArray) => {
+    let array = originalArray.slice();
+
+    for (let i = array.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    };
+
+    return array;
+};
 
 const GameArea = () => {
+    const [villagers, setVillagers] = useState(mockVillagers);
+
+    // Collect villager data on loading
+    useEffect(() => {
+        const fetchVillagerData = async () => {
+            const villagerData = await getData(villagerNames);
+            setVillagers(villagerData);
+        };
+
+        fetchVillagerData();
+    }, [setVillagers]);
+    
+    const handleCardClick = (e) => {
+        setVillagers(shuffle(villagers));
+    };
+
+    // TODO: Remove
+    // console.log(villagers);
+
     const [score, setScore] = useState(0);
     const [best, setBest] = useState(0);
     const [showModal, setShowModal] = useState(false);
