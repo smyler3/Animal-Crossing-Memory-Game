@@ -4,6 +4,7 @@ import CardGrid from "./CardGrid";
 import GameEndModal from "./GameEndModal";
 import Scoreboard from "./Scoreboard";
 import VillagerCard from "./VillagerCard";
+import Loader from "./Loader";
 
 const mockVillagers = [
     {
@@ -148,7 +149,7 @@ const getData = async (names) => {
     try {
         const villagersData = await Promise.all(names.map(async (name) => {
             const res = await fetch(
-                `https://api.nookipedia.com/villagers?name=${name}&nhdetails=true&thumbsize=200&api_key=${env.API_KEY}&version=1.0.0`, 
+                `https://api.nookipedia.com/villagers?name=${name}&nhdetails=true&thumbsize=200&api_key=63184bf1-8678-49bc-82c1-fa7ebb22043a&version=1.0.0`, 
                 {mode: 'cors'}
             );
             const data = await res.json();
@@ -160,17 +161,17 @@ const getData = async (names) => {
                 title_colour: data[0].title_color,
                 text_colour: data[0].text_color,
                 icon_url: data[0].nh_details.icon_url,
-                // image_url: data[0].nh_details.image_url,
                 clicked: false,    
             }
         }));
 
+        // TODO: Remove
         console.log("retrieved data", villagersData);
 
         return villagersData;
     } catch (err) {
         console.error(err);
-        return [];
+        return mockVillagers;
     }
 };
 
@@ -191,12 +192,16 @@ const GameArea = () => {
     const [best, setBest] = useState(0);
     const [showModal, setShowModal] = useState(false);
     const [villagers, setVillagers] = useState(mockVillagers);
+    const [loading, setLoading] = useState(false);
 
     // Collect villager data on loading
     useEffect(() => {
         const fetchVillagerData = async () => {
-            const villagerData = await getData(villagerNames);
-            setVillagers(villagerData);
+            setLoading(true);
+            await new Promise((resolve) => setTimeout(resolve, 3000));
+            // const villagerData = await getData(villagerNames);
+            // setVillagers(villagerData);
+            setLoading(false);
         };
 
         fetchVillagerData();
@@ -250,9 +255,13 @@ const GameArea = () => {
                     Be careful though, as the cards will shuffle after every click to challenge your memory.
                 </p>
                 <Scoreboard score={score} best={best} />
-                <CardGrid >
-                    {villagers.map(villager => <VillagerCard key={villager.id} villager={villager} handleClick={handleCardClick} />)}
-                </CardGrid>
+                {loading ? (
+                    <Loader/>
+                ): (
+                    <CardGrid >
+                        {villagers.map(villager => <VillagerCard key={villager.id} villager={villager} handleClick={handleCardClick} />)}
+                    </CardGrid>
+                )}
             </main>
         </>
     )
