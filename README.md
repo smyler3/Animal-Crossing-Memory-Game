@@ -1,8 +1,7 @@
-# React + Vite
+# Animal Crossing Memory Card Game
+This is a memory card game inspired by Animal Crossing, created as part of The Odin Project curriculum. Players must click on every unique villager card, with the cards shuffling after each selection. The game tests players' memory and observation skills. Built using React, HTML, and CSS.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Features:
+* API Request for villager information
+* Randomized card shuffling after every move
+* Simple and intuitive design for a fun and engaging experience
