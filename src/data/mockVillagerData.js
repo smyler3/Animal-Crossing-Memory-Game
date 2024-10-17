@@ -1,0 +1,102 @@
+
+// Fallback data if api calls fail
+const mockVillagerData = [
+    {
+        id: "flg18",
+        name: "Diva",
+        icon_url: "https://dodo.ac/np/images/5/5b/Diva_NH_Villager_Icon.png",
+        title_colour: "a06fce",
+        text_colour: "fffce9",
+        clicked: false,
+    },
+    {
+        id: "der05",
+        name: "Lopez",
+        icon_url: "https://dodo.ac/np/images/5/54/Lopez_NH_Villager_Icon.png",
+        title_colour: "e8b010",
+        text_colour: "fffce9",
+        clicked: false,
+    },
+    {
+        id: "dog02",
+        name: "Lucky",
+        icon_url: "https://dodo.ac/np/images/1/13/Lucky_NH_Villager_Icon.png",
+        title_colour: "ffffff",
+        text_colour: "848484",
+        clicked: false,
+    },
+    {
+        id: "ocp00",
+        name: "Octavian",
+        icon_url: "https://dodo.ac/np/images/a/a0/Octavian_NH_Villager_Icon.png",
+        title_colour: "ff4040",
+        text_colour: "fffad4",
+        clicked: false,
+    },
+    {
+        id: "flg15",
+        name: "Raddle",
+        icon_url: "https://dodo.ac/np/images/0/04/Raddle_NH_Villager_Icon.png",
+        title_colour: "515151",
+        text_colour: "fffce9",
+        clicked: false,
+    },
+    {
+        id: "cat23",
+        name: "Raymond",
+        icon_url: "https://dodo.ac/np/images/f/f2/Raymond_NH_Villager_Icon.png",
+        title_colour: "acc8cf",
+        text_colour: "498992",
+        clicked: false,
+    },
+    {
+        id: "crd05",
+        name: "Roswell",
+        icon_url: "https://dodo.ac/np/images/7/77/Roswell_NH_Villager_Icon.png",
+        title_colour: "4c3317",
+        text_colour: "fffce9",
+        clicked: false,
+    },
+    {
+        id: "rbt09",
+        name: "Ruby",
+        icon_url: "https://dodo.ac/np/images/3/3a/Ruby_NH_Villager_Icon.png",
+        title_colour: "ffffff",
+        text_colour: "848484",
+        clicked: false,
+    },
+    {
+        id: "duk10",
+        name: "Scoot",
+        icon_url: "https://dodo.ac/np/images/3/37/Scoot_NH_Villager_Icon.png",
+        title_colour: "78dd62",
+        text_colour: "28665a",
+        clicked: false,
+    },
+    {
+        id: "cbr05",
+        name: "Stitches",
+        icon_url: "https://dodo.ac/np/images/d/dd/Stitches_NH_Villager_Icon.png",
+        title_colour: "ffaa3b",
+        text_colour: "874c25",
+        clicked: false,
+    },
+    {
+        id: "squ14",
+        name: "Sylvana",
+        icon_url: "https://dodo.ac/np/images/b/b3/Sylvana_NH_Villager_Icon.png",
+        title_colour: "c0ab72",
+        text_colour: "fffce9",
+        clicked: false,
+    },
+    {
+        id: "kal00",
+        name: "Yuka",
+        icon_url: "https://dodo.ac/np/images/7/7c/Yuka_NH_Villager_Icon.png",
+        title_colour: "194c89",
+        text_colour: "fffad4",
+        clicked: false,
+    }
+];
+
+export default mockVillagerData;
