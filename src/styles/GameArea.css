@@ -1,6 +1,6 @@
 :root {
     --description-font-size: 12px;
-    --main-max-height: 800px;
+    --main-max-height: 1000px;
 }
 
 main {
@@ -12,7 +12,7 @@ main {
     align-items: center;
 
     width: 100%;
-    max-width: 800px;
+    max-width: 1000px;
 
     padding: 12px;
 }
@@ -30,14 +30,18 @@ main {
 
     main {
         grid-template-columns: 1fr 150px;
-        grid-template-rows: auto auto 1fr;
+        grid-template-rows: auto 1fr;
 
         padding: 40px;
+    }
+
+    .scoreboard {
+        align-self: flex-start;
     }
 }
 
 @media screen and (min-width: 1200px) {
     main {
-        max-height: calc(var(--villager-card-max-height) * 4);
+        max-height: var(--main-max-height);
     }
 }

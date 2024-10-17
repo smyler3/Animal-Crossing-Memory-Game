@@ -1,0 +1,73 @@
+:root {
+    --start-offset: 5px;
+    --bounce-distance: -5px;
+    --bounce-delay: 150ms;
+}
+
+.loading-wrapper {
+    grid-area: 2 / 1 / 3 / 3 ;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+
+    height: 100%;
+    width: 100%;
+
+    color: var(--loader-colour);
+    font-size: 20px;
+    border: 2px solid var(--loader-border-colour);
+    border-radius: 10px;
+    background-color: var(--loader-bg-colour);
+}
+
+.loader {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 5px;
+}
+
+.ball {
+    height: 3px;
+    width: 3px;
+
+    background-color: var(--loader-colour);
+    border-radius: 50%;
+
+    animation: 2.5s bounce infinite;
+}
+
+.ball-2 {
+    animation-delay: var(--bounce-delay);
+}
+
+.ball-3 {
+    animation-delay: calc(var(--bounce-delay) * 2);
+}
+
+@keyframes bounce {
+    from {
+        transform: translateY(var(--start-offset));
+    }
+
+    35% {
+        transform: translateY(var(--bounce-distance));
+    }
+
+    70% {
+        transform: translateY(var(--start-offset));
+    }
+
+    to {
+        transform: translateY(var(--start-offset));
+    }
+}
+
+/* Change screen layout position */
+@media screen and (min-width: 601px) {
+    .loading-wrapper {
+        align-self: flex-start;
+        grid-area: 1 / 1 / -1 / 2; 
+    }
+}

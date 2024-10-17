@@ -1,8 +1,7 @@
 import GithubIcon from "./GithubIcon";
 import "../styles/Footer.css"
-import { memo } from "react";
 
-const Footer = memo(() => {
+const Footer = () => {
     return (
         <footer>
             <div className="footer-content-wrapper">
@@ -15,6 +14,6 @@ const Footer = memo(() => {
             </div>
         </footer>
     );
-});
+};
 
 export default Footer;

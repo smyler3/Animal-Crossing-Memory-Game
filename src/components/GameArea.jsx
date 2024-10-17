@@ -1,120 +1,112 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../styles/GameArea.css";
 import CardGrid from "./CardGrid";
+import GameEndModal from "./GameEndModal";
 import Scoreboard from "./Scoreboard";
-import { useEffect } from "react";
+import VillagerCard from "./VillagerCard";
+import Loader from "./Loader";
 
+// Fallback data if api calls fail
 const mockVillagers = [
     {
-        id: 1,
+        id: "flg18",
+        name: "Diva",
+        icon_url: "https://dodo.ac/np/images/5/5b/Diva_NH_Villager_Icon.png",
+        title_colour: "a06fce",
+        text_colour: "fffce9",
+        clicked: false,
+    },
+    {
+        id: "der05",
+        name: "Lopez",
+        icon_url: "https://dodo.ac/np/images/5/54/Lopez_NH_Villager_Icon.png",
+        title_colour: "e8b010",
+        text_colour: "fffce9",
+        clicked: false,
+    },
+    {
+        id: "dog02",
+        name: "Lucky",
+        icon_url: "https://dodo.ac/np/images/1/13/Lucky_NH_Villager_Icon.png",
+        title_colour: "ffffff",
+        text_colour: "848484",
+        clicked: false,
+    },
+    {
+        id: "ocp00",
+        name: "Octavian",
+        icon_url: "https://dodo.ac/np/images/a/a0/Octavian_NH_Villager_Icon.png",
+        title_colour: "ff4040",
+        text_colour: "fffad4",
+        clicked: false,
+    },
+    {
+        id: "flg15",
+        name: "Raddle",
+        icon_url: "https://dodo.ac/np/images/0/04/Raddle_NH_Villager_Icon.png",
+        title_colour: "515151",
+        text_colour: "fffce9",
+        clicked: false,
+    },
+    {
+        id: "cat23",
         name: "Raymond",
-        nh_details: {
-            icon_url: "https://example.com/raymond-icon.png",
-        },
-        title_color: "#FFD700", // Gold
-        text_color: "#000000", // Black
+        icon_url: "https://dodo.ac/np/images/f/f2/Raymond_NH_Villager_Icon.png",
+        title_colour: "acc8cf",
+        text_colour: "498992",
+        clicked: false,
     },
     {
-        id: 2,
-        name: "Marshall",
-        nh_details: {
-            icon_url: "https://example.com/marshall-icon.png",
-        },
-        title_color: "#C0C0C0", // Silver
-        text_color: "#000000", // Black
+        id: "crd05",
+        name: "Roswell",
+        icon_url: "https://dodo.ac/np/images/7/77/Roswell_NH_Villager_Icon.png",
+        title_colour: "4c3317",
+        text_colour: "fffce9",
+        clicked: false,
     },
     {
-        id: 3,
-        name: "Sherb",
-        nh_details: {
-            icon_url: "https://example.com/sherb-icon.png",
-        },
-        title_color: "#ADD8E6", // Light Blue
-        text_color: "#FFFFFF", // White
+        id: "rbt09",
+        name: "Ruby",
+        icon_url: "https://dodo.ac/np/images/3/3a/Ruby_NH_Villager_Icon.png",
+        title_colour: "ffffff",
+        text_colour: "848484",
+        clicked: false,
     },
     {
-        id: 4,
-        name: "Audie",
-        nh_details: {
-            icon_url: "https://example.com/audie-icon.png",
-        },
-        title_color: "#FF4500", // Orange Red
-        text_color: "#FFFFFF", // White
+        id: "duk10",
+        name: "Scoot",
+        icon_url: "https://dodo.ac/np/images/3/37/Scoot_NH_Villager_Icon.png",
+        title_colour: "78dd62",
+        text_colour: "28665a",
+        clicked: false,
     },
     {
-        id: 5,
-        name: "Coco",
-        nh_details: {
-            icon_url: "https://example.com/coco-icon.png",
-        },
-        title_color: "#D2B48C", // Tan
-        text_color: "#000000", // Black
+        id: "cbr05",
+        name: "Stitches",
+        icon_url: "https://dodo.ac/np/images/d/dd/Stitches_NH_Villager_Icon.png",
+        title_colour: "ffaa3b",
+        text_colour: "874c25",
+        clicked: false,
     },
     {
-        id: 6,
-        name: "Zucker",
-        nh_details: {
-            icon_url: "https://example.com/zucker-icon.png",
-        },
-        title_color: "#FF6347", // Tomato
-        text_color: "#FFFFFF", // White
+        id: "squ14",
+        name: "Sylvana",
+        icon_url: "https://dodo.ac/np/images/b/b3/Sylvana_NH_Villager_Icon.png",
+        title_colour: "c0ab72",
+        text_colour: "fffce9",
+        clicked: false,
     },
     {
-        id: 7,
-        name: "Judy",
-        nh_details: {
-            icon_url: "https://example.com/judy-icon.png",
-        },
-        title_color: "#EE82EE", // Violet
-        text_color: "#000000", // Black
-    },
-    {
-        id: 8,
-        name: "Ankha",
-        nh_details: {
-            icon_url: "https://example.com/ankha-icon.png",
-        },
-        title_color: "#FFD700", // Gold
-        text_color: "#000000", // Black
-    },
-    {
-        id: 9,
-        name: "Cherry",
-        nh_details: {
-            icon_url: "https://example.com/cherry-icon.png",
-        },
-        title_color: "#DC143C", // Crimson
-        text_color: "#FFFFFF", // White
-    },
-    {
-        id: 10,
-        name: "Beau",
-        nh_details: {
-            icon_url: "https://example.com/beau-icon.png",
-        },
-        title_color: "#DEB887", // Burly Wood
-        text_color: "#000000", // Black
-    },
-    {
-        id: 11,
-        name: "Fang",
-        nh_details: {
-            icon_url: "https://example.com/fang-icon.png",
-        },
-        title_color: "#A9A9A9", // Dark Gray
-        text_color: "#FFFFFF", // White
-    },
-    {
-        id: 12,
-        name: "Dom",
-        nh_details: {
-            icon_url: "https://example.com/dom-icon.png",
-        },
-        title_color: "#FFB6C1", // Light Pink
-        text_color: "#000000", // Black
+        id: "kal00",
+        name: "Yuka",
+        icon_url: "https://dodo.ac/np/images/7/7c/Yuka_NH_Villager_Icon.png",
+        title_colour: "194c89",
+        text_colour: "fffad4",
+        clicked: false,
     }
 ];
 
+// Villagers to make cards from
 const villagerNames = [
     'Diva',
     'Lopez',
@@ -130,28 +122,48 @@ const villagerNames = [
     'Yuka',
 ];
 
-// Use a given list of villager names to fetch data from Nookipedia and return an array of promsies that resolve with their data
-const getData = async (names) => {
+const fetchData = async (names) => {
+    // Handles timeouts
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000); // 5 seconds timeout
+    
     try {
-        const villagersData = await Promise.all(names.map(async (name) => {
-            const res = await fetch(`https://api.nookipedia.com/villagers/${name}?api_key=${REACT_APP_API_KEY}`, {mode: 'cors'});
+        // Map the names array to an array of promises, where each promise fetches the data for a specific villager
+        const promises = names.map(async (name) => {
+            const res = await fetch(
+                `https://api.nookipedia.com/villagers?name=${name}&nhdetails=true&thumbsize=200&${VITE_API_KEY}&version=1.0.0`, 
+                {
+                    mode: 'cors',
+                    signal: controller.signal,
+                }
+            );
+
+            if (!res.ok) {
+                throw new Error(`Failed to fetch data for ${name}`);
+            }
+
             const data = await res.json();
-            // TODO: remove
-            console.log(data);
+
             return {
                 id: data[0].id,
                 name: data[0].name,
                 title_colour: data[0].title_color,
-                text_colour: data[0].text_colour,
+                text_colour: data[0].text_color,
                 icon_url: data[0].nh_details.icon_url,
-                image_url: data[0].nh_details.image_url,    
-            }
-        }));
+                clicked: false,
+            };
+        });
+
+        const villagersData = await Promise.all(promises);
+        
+        clearTimeout(timeoutId);
 
         return villagersData;
     } catch (err) {
-        console.error(err);
-        return [];
+        console.error(`Error fetching data`, err);
+        clearTimeout(timeoutId);
+
+        return mockVillagers;
     }
 };
 
@@ -168,36 +180,89 @@ const shuffle = (originalArray) => {
 };
 
 const GameArea = () => {
+    const [score, setScore] = useState(0);
+    const [best, setBest] = useState(0);
+    const [showModal, setShowModal] = useState(false);
     const [villagers, setVillagers] = useState(mockVillagers);
+    const [loading, setLoading] = useState(false);
 
     // Collect villager data on loading
     useEffect(() => {
         const fetchVillagerData = async () => {
-            const villagerData = await getData(villagerNames);
+            // Begin loader
+            setLoading(true);
+
+            // Fetch Data
+            const villagerData = await fetchData(villagerNames);
             setVillagers(villagerData);
+
+            // Show off loader for a second lol
+            await new Promise(resolve => setTimeout(resolve, 500));
+
+            // End loader
+            setLoading(false);
         };
 
         fetchVillagerData();
-    }, [setVillagers]);
-    
-    const handleCardClick = (e) => {
-        setVillagers(shuffle(villagers));
+    }, []);
+
+    // Progress game as cards are clicked
+    const handleCardClick = (id) => {
+        const villager = villagers.find(v => v.id === id);
+
+        if (!villager.clicked) {
+            // Add to score
+             const newScore = score + 1;
+             setScore(newScore);
+
+            //  Game won
+             if (newScore === villagers.length) {
+                 setBest(newScore);
+                 setShowModal(true);
+             }
+            // Game continues
+             else {
+                // Make card clicked and shuffle
+                const newVillagers = [...villagers.filter(v => v.id !== id), {...villager, clicked: true}];
+                setVillagers(shuffle(newVillagers));
+             }
+        }
+        else {
+            setBest(prev => Math.max(prev, score));
+            setShowModal(true);
+        }
     };
 
-    // TODO: Remove
-    // console.log(villagers);
+    // Restart game
+    const handlePlayAgainClick = () => {
+        setScore(0);
+        setShowModal(false);
+
+        // Make all cards unclicked and shuffle
+        const newVillagers = villagers.map(v => { return {...v, clicked: false } });
+        setVillagers(shuffle(newVillagers));
+    };
 
     return (
-        <main>
-            <p className="game-description">
-                Click each Animal Crossing villager card in the grid without selecting the same card more than once.
-                <br />
-                <br />
-                Be careful though, as the cards will shuffle after every click to challenge your memory.
-            </p>
-            <Scoreboard score={0} best={10} />
-            <CardGrid villagers={villagers}/>
-        </main>
+        <>
+            {showModal && <GameEndModal score={score} best={best} handleClick={handlePlayAgainClick} />}
+            <main>
+                <p className="game-description">
+                    Click each Animal Crossing villager card in the grid without selecting the same card more than once.
+                    <br />
+                    <br />
+                    Be careful though, as the cards will shuffle after every click to challenge your memory.
+                </p>
+                <Scoreboard score={score} best={best} />
+                {loading ? (
+                    <Loader/>
+                ): (
+                    <CardGrid >
+                        {villagers.map(villager => <VillagerCard key={villager.id} villager={villager} handleClick={handleCardClick} />)}
+                    </CardGrid>
+                )}
+            </main>
+        </>
     )
 };
 
