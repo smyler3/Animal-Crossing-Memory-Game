@@ -1,5 +1,6 @@
 :root {
-    --bounce-distance: -20px;
+    --start-offset: 5px;
+    --bounce-distance: -5px;
     --bounce-delay: 150ms;
 }
 
@@ -14,11 +15,11 @@
     height: 100%;
     width: 100%;
 
-    color: var(--pink-300);
+    color: var(--loader-colour);
     font-size: 20px;
-    border: 2px solid var(--pink-300);
+    border: 2px solid var(--loader-border-colour);
     border-radius: 10px;
-    background-color: white;
+    background-color: var(--loader-bg-colour);
 }
 
 .loader {
@@ -31,7 +32,7 @@
     height: 3px;
     width: 3px;
 
-    background-color: var(--pink-300);
+    background-color: var(--loader-colour);
     border-radius: 50%;
 
     animation: 2.5s bounce infinite;
@@ -47,7 +48,7 @@
 
 @keyframes bounce {
     from {
-        transform: translateY(4px);
+        transform: translateY(var(--start-offset));
     }
 
     35% {
@@ -55,11 +56,11 @@
     }
 
     70% {
-        transform: translateY(4px);
+        transform: translateY(var(--start-offset));
     }
 
     to {
-        transform: translateY(4px);
+        transform: translateY(var(--start-offset));
     }
 }
 

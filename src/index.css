@@ -5,12 +5,7 @@
 
   box-sizing: border-box;
 
-  /* TODO: Needed? */
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  /* TODO: Needed? */
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -36,10 +31,16 @@
   --white: #FFFFFF;
 
   --shadow: 0 0 4px #00000030;
+  --shadow-bg: #00000095;
 
   /* Main Styling Colours */
   --main-bg-colour: var(--tan-100);
   --description-colour: var(--brown-300);
+
+  /* Loader Styling Colours */
+  --loader-colour: var(--pink-300);
+  --loader-bg-colour: var(--white);
+  --loader-border-colour: var(--pink-300);
 
   /* Header Styling Colours */
   --header-bg-colour: var(--pink-300);
@@ -71,6 +72,7 @@
   --modal-header-colour: var(--brown-300);
   --modal-footer-border-colour: var(--pink-200);
   --modal-footer-bg-colour: var(--pink-300);
+  --modal-blur-bg: var(--shadow-bg);
 
   /* Button Styling Colours */
   --play-again-button-bg-colour: var(--green-100);

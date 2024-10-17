@@ -1,7 +1,6 @@
-import { memo } from "react";
 import "../styles/Header.css";
 
-const Header = memo(() => {
+const Header = () => {
     return (
         <header>
             <div className="header-background-wrapper">
@@ -12,6 +11,6 @@ const Header = memo(() => {
             </div>
         </header>
     )
-});
+};
 
 export default Header;

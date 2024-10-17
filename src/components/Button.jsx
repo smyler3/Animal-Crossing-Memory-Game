@@ -1,8 +1,8 @@
 import "../styles/Button.css";
 
-const Button = ({ onClick }) => {
+const Button = ({ handleClick }) => {
     return (
-        <button className="play-again-button" onClick={onClick}>
+        <button className="play-again-button" onClick={handleClick}>
             <p>PLAY AGAIN</p>
         </button>
     )

@@ -1,7 +1,6 @@
 import "../styles/VillagerCard.css";
 
-// TODO: add full body images on larger screens?
-const VillagerCard = ({ villager, handleClick, }) => {
+const VillagerCard = ({ villager, handleClick }) => {
     return (
         <div className="villager-card" onClick={() => {handleClick(villager.id)}}>
             <div className="villager-img">

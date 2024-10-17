@@ -2,7 +2,6 @@
     --card-grid-min-col-width: 110px;
 }
 
-/* TODO: Remember how grid works so that the grid cards grow as the grid grown while aspect-ratio 1:1 */
 .card-grid {
     grid-area: 2 / 1 / 3 / 3;
 

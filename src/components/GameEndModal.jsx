@@ -16,7 +16,7 @@ const GameEndModal = ({ score, best, handleClick }) => {
                         <Scoreboard score={score} />
                         <Scoreboard best={best} />
                     </div>
-                    <Button onClick={handleClick} />
+                    <Button handleClick={handleClick} />
                 </div>
                 <div className="modal-footer">
                     <div className="modal-footer-background"></div>
