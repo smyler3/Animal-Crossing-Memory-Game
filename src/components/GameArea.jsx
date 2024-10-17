@@ -131,7 +131,7 @@ const fetchData = async (names) => {
         // Map the names array to an array of promises, where each promise fetches the data for a specific villager
         const promises = names.map(async (name) => {
             const res = await fetch(
-                `https://api.nookipedia.com/villagers?name=${name}&nhdetails=true&thumbsize=200&api_key=63184bf1-8678-49bc-82c1-fa7ebb22043a&version=1.0.0`, 
+                `https://api.nookipedia.com/villagers?name=${name}&nhdetails=true&thumbsize=200&${VITE_API_KEY}&version=1.0.0`, 
                 {
                     mode: 'cors',
                     signal: controller.signal,
