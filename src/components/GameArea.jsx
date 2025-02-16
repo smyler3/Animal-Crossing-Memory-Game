@@ -45,17 +45,20 @@ const fetchData = async () => {
 
 const chooseRandomVillagers = (villagersData) => {
     const chosenVillagers = [];
+    const offset = Math.floor(Math.random() * ((villagersData.length - 1) - MAX_VILLAGERS));
+
     for (let i = 0; i < MAX_VILLAGERS; i += 1) {
-        const j = Math.floor(Math.random() * (villagersData.length - 1)); 
         chosenVillagers.push({
-            id: villagersData[j].id,
-            name: villagersData[j].name,
-            title_colour: villagersData[j].title_color,
-            text_colour: villagersData[j].text_color,
-            icon_url: villagersData[j].image_url,
+            id: villagersData[offset + i].id,
+            name: villagersData[offset + i].name,
+            title_colour: villagersData[offset + i].title_color,
+            text_colour: villagersData[offset + i].text_color,
+            icon_url: villagersData[offset + i].image_url,
             clicked: false,
         })
     };
+
+    return chosenVillagers;
 };
 
 // Durstfield Shuffle implementation (https://gist.github.com/webbower/8d19b714ded3ec53d1d7ed32b79fdbac)
