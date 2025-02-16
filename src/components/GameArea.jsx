@@ -44,16 +44,15 @@ const fetchData = async () => {
 };
 
 const chooseRandomVillagers = (villagersData) => {
+    const shuffledVillagersData = shuffle(villagersData);
     const chosenVillagers = [];
-    const offset = Math.floor(Math.random() * ((villagersData.length - 1) - MAX_VILLAGERS));
-
     for (let i = 0; i < MAX_VILLAGERS; i += 1) {
         chosenVillagers.push({
-            id: villagersData[offset + i].id,
-            name: villagersData[offset + i].name,
-            title_colour: villagersData[offset + i].title_color,
-            text_colour: villagersData[offset + i].text_color,
-            icon_url: villagersData[offset + i].image_url,
+            id: shuffledVillagersData[i].id,
+            name: shuffledVillagersData[i].name,
+            title_colour: shuffledVillagersData[i].title_color,
+            text_colour: shuffledVillagersData[i].text_color,
+            icon_url: shuffledVillagersData[i].image_url,
             clicked: false,
         })
     };
