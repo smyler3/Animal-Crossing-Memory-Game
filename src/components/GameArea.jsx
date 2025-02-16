@@ -52,7 +52,7 @@ const chooseRandomVillagers = (villagersData) => {
             name: villagersData[j].name,
             title_colour: villagersData[j].title_color,
             text_colour: villagersData[j].text_color,
-            icon_url: villagersData[j].nh_details.icon_url,
+            icon_url: villagersData[j].image_url,
             clicked: false,
         })
     };
