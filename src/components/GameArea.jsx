@@ -7,65 +7,55 @@ import VillagerCard from "./VillagerCard";
 import Loader from "./Loader";
 import mockVillagerData from "../data/mockVillagerData";
 
-// Villagers to make cards from
-const villagerNames = [
-    'Diva',
-    'Lopez',
-    'Lucky',
-    'Octavian',
-    'Raddle',
-    'Raymond',
-    'Roswell',
-    'Ruby',
-    'Scoot',
-    'Stitches',
-    'Sylvana',
-    'Yuka',
-];
+const MAX_VILLAGERS = 12;
 
-const fetchData = async (names) => {
+const fetchData = async () => {
     // Handles timeouts
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000); // 5 seconds timeout
+    const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 seconds timeout
     
     try {
-        // Map the names array to an array of promises, where each promise fetches the data for a specific villager
-        const promises = names.map(async (name) => {
-            const res = await fetch(
-                `https://api.nookipedia.com/villagers?name=${name}&nhdetails=true&thumbsize=200&api_key=${import.meta.env.VITE_API_KEY}&version=1.0.0`, 
-                {
-                    mode: 'cors',
-                    signal: controller.signal,
-                }
-            );
-
-            if (!res.ok) {
-                throw new Error(`Failed to fetch data for ${name}`);
+        const res = await fetch(
+            "https://animal-crossing-proxy-server.mylertalym01.workers.dev/api/villagers", 
+            {
+                mode: 'cors',
+                signal: controller.signal,
             }
+        );
 
-            const data = await res.json();
+        if (!res.ok) {
+            throw new Error("Failed to fetch data from proxy server");
+        }
 
-            return {
-                id: data[0].id,
-                name: data[0].name,
-                title_colour: data[0].title_color,
-                text_colour: data[0].text_color,
-                icon_url: data[0].nh_details.icon_url,
-                clicked: false,
-            };
-        });
+        const data = await res.json();
 
-        const villagersData = await Promise.all(promises);
-        
-        clearTimeout(timeoutId);
+        const villagerData = chooseRandomVillagers(data);
 
-        return villagersData;
-    } catch (err) {
-        console.error(`Error fetching data`, err);
-        clearTimeout(timeoutId);
+        return villagerData;
+    }
+    catch (err) {
+        console.error("Error fetching data", err);
 
         return mockVillagerData;
     }
+    finally {
+        clearTimeout(timeoutId);
+    };
+};
+
+const chooseRandomVillagers = (villagersData) => {
+    const chosenVillagers = [];
+    for (let i = 0; i < MAX_VILLAGERS; i += 1) {
+        const j = Math.floor(Math.random() * (villagersData.length - 1)); 
+        chosenVillagers.push({
+            id: villagersData[j].id,
+            name: villagersData[j].name,
+            title_colour: villagersData[j].title_color,
+            text_colour: villagersData[j].text_color,
+            icon_url: villagersData[j].nh_details.icon_url,
+            clicked: false,
+        })
+    };
 };
 
 // Durstfield Shuffle implementation (https://gist.github.com/webbower/8d19b714ded3ec53d1d7ed32b79fdbac)
@@ -94,7 +84,7 @@ const GameArea = () => {
             setLoading(true);
 
             // Fetch Data
-            const villagerData = await fetchData(villagerNames);
+            const villagerData = await fetchData();
             setVillagers(villagerData);
 
             // Show off loader for a second lol
