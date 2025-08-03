@@ -6,9 +6,25 @@ This is a memory card game inspired by Animal Crossing. Players must click on ev
 ***Built using: React, HTML, CSS, Cloudflare Worker, and Nookiepedia API***
 
 ## Features
-* Requsts villager data through a proxy API request via a cloudflare worker which caches stored results
-* Randomized card shuffling after every move
+* Fetches villager data through a proxy API implemented as a Cloudflare Worker, with caching of the response data.
+* Randomized card shuffling after every move using the Durstenfeld shuffle algorithm
 * Simple and intuitive design for a fun and engaging experience
+
+## How to run
+1. Clone the repo
+```bash
+git clone https://github.com/smyler3/Animal-Crossing-Memory-Game.git
+cd Animal-Crossing-Memory-Game
+```
+2. Install dependencies
+```bash
+npm install
+```
+
+3. Start dev server
+```bash
+npm run dev
+```
 
 ## Acknowledgements
 * All resources queried from [Nookiepedia API](https://api.nookipedia.com/)
